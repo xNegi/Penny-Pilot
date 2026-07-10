@@ -13,7 +13,7 @@ import { faPaperPlane,
 
 export default function Sidebar() {
   return (
-    <aside className="w-58 h-screen bg-[#F9FAFB] flex flex-col border-r-2 gap-6 border-gray-200 ">
+    <aside className="w-58 h-screen bg-[#F9FAFB] flex flex-col border-r-2 gap-6 border-gray-200  ">
       <div className="flex items-center justify-center gap-2 h-18 px-4 py-4 ">
         <span className="text-2xl font-bold text-violet-700">
            Penny Pilot <FontAwesomeIcon icon={faPaperPlane} /> 
@@ -26,7 +26,7 @@ export default function Sidebar() {
         <ul className=" flex flex-col gap-4 font-medium w-full">
           <li>
             <Link href="/dashboard"
-            className="flex w-full h-8 items-center gap-3 rounded-lg px-4 py-3  hover:bg-violet-100 hover:text-violet-600 transition-colors duration-300"
+            className="flex w-full h-8 items-center gap-3 rounded-lg px-4 py-3 hover:bg-violet-100 hover:text-violet-600 transition-colors duration-300"
             >
             <FontAwesomeIcon icon={faHouse} className="w-5 shrink-0"  />
              Dashboard
@@ -97,8 +97,6 @@ export default function Sidebar() {
           </li>
         </ul>
       </nav>
-
-
     </aside>
     );
 }
