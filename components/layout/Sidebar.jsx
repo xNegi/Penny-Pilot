@@ -13,7 +13,7 @@ import { faPaperPlane,
 
 export default function Sidebar() {
   return (
-    <aside className="w-58 h-screen bg-[#F9FAFB] flex flex-col border-r-2 gap-6 border-gray-200  ">
+    <aside className="w-58 self-stretch bg-[#F9FAFB] flex flex-col border-r-2 gap-6 border-gray-200  ">
       <div className="flex items-center justify-center gap-2 h-18 px-4 py-4 ">
         <span className="text-2xl font-bold text-violet-700">
            Penny Pilot <FontAwesomeIcon icon={faPaperPlane} /> 
