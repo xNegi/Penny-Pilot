@@ -1,7 +1,5 @@
-  
-export default function Home() {
-  return (
-    <h1>penny-pilot</h1>
-  );
-}
+import { redirect } from "next/navigation";
 
+export default function Home() {
+  redirect("/dashboard");
+}
