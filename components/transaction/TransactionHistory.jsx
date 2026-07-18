@@ -1,0 +1,73 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClock } from '@fortawesome/free-regular-svg-icons';
+
+export default function TransactionHistory() {
+    return (
+         <div className="h-selfstretch w-[65%] rounded-3xl bg-white p-4 border-2 border-gray-200 shadow-sm">
+            <div className="flex items-center">
+                <h2 className="text-lg font-semibold">Transaction History <FontAwesomeIcon icon={faClock} className='text-gray-400'> </FontAwesomeIcon></h2>
+            </div>
+            
+            <div className="mt-6">
+                <ul>
+                    <div className="flex justify-between border-b border-gray-300">
+                        <li className="text-lg font-semibold">
+                            Starbucks
+                            <div className="flex gap-4 mb-2 ">
+                                <p className="text-sm text-gray-500"> May 24, 2026</p>
+        {/* category */}        <p className="text-sm text-gray-500">Food</p>
+                            </div>
+                        </li>
+                        <p className="text-lg font-semibold text-red-500">-$2.64</p>
+                    </div>
+                    <div className="flex justify-between border-b border-gray-300 mt-2">
+                    <li className="text-lg font-semibold">
+                        Uber
+                        <div className="flex gap-4 mb-2">
+                            <p className="text-sm text-gray-500"> May 24, 2026</p>
+                            <p className="text-sm text-gray-500">Travel/Transportation</p>
+                        </div>
+                    </li>
+                     <p className="text-lg font-semibold text-red-500">-$5.24</p>
+                    </div>
+
+                    <div className="flex justify-between border-b border-gray-300 mt-2">
+                    <li className="text-lg font-semibold">
+                        Shopping
+                        <div className="flex gap-4 mb-2">
+                            <p className="text-sm text-gray-500"> May 24, 2026</p>
+                            <p className="text-sm text-gray-500">Clothes</p>
+                        </div>
+                    </li>
+                    <p className="text-lg font-semibold text-red-500">-$15.74</p>
+                    </div>
+
+                    <div className="flex justify-between border-b border-gray-300 mt-2">
+                    <li className="text-lg font-semibold">
+                        Salary Deposit
+                        <div className="flex gap-4 mb-2">
+                            <p className="text-sm text-gray-500"> May 24, 2026</p>
+                            <p className="text-sm text-gray-500">Income</p>
+                        </div>
+                    </li>
+                     <p className="text-lg font-semibold text-green-500">+$200.24</p>
+                    </div>
+
+                    <div className="flex justify-between border-b border-gray-300 mt-2">
+                    <li className="text-lg font-semibold">
+                        Salary Deposit
+                        <div className="flex gap-4 mb-2">
+                            <p className="text-sm text-gray-500"> May 24, 2026</p>
+                            <p className="text-sm text-gray-500">Income</p>
+                        </div>
+                    </li>
+                     <p className="text-lg font-semibold text-green-500">+$200.24</p>
+                    </div>
+                </ul>
+                <div className="flex items-center justify-center mt-2 font-medium text-violet-700">
+                    <button>View all transactions</button>
+                </div>
+            </div>
+        </div>
+    )
+}

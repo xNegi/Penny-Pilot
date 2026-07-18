@@ -1,69 +1,40 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faWallet,
-  faBagShopping,
-  faChartColumn,
-  faCoins,
-} from "@fortawesome/free-solid-svg-icons";
+const data = [
+  { day: "May 1", income: 1800, expense: 800 },
+  { day: "May 5", income: 3000, expense: 1200 },
+  { day: "May 10", income: 4200, expense: 1800 },
+  { day: "May 15", income: 3900, expense: 1700 },
+  { day: "May 20", income: 4700, expense: 2300 },
+  { day: "May 24", income: 4800, expense: 2100 },
+  { day: "May 31", income: 5900, expense: 3500 },
+];
 
-export default function CashFlowSummary() {
-  return (
-    <div className=" h-24 flex items-center justify-between  overflow-hidden gap-2 border-2 border-gray-200 shadow-sm rounded-2xl p-4">
-      {/* Income */}
-      <div className="flex flex-1 items-center ml-4 border-r border-gray-300">
-        <div className="flex items-center gap-4">
-          <div className="flex items-center justify-center w-14 h-14 rounded-2xl bg-violet-100">
-            <FontAwesomeIcon icon={faWallet} className="text-violet-500 fa-2x" />
-          </div>
-          <ul className="flex flex-col">
-            <li className="font-semibold">Income</li>
-            <li className="font-medium text-2xl text-violet-700">$100</li>
-            <li className="text-sm text-gray-500">This month</li>
-          </ul>
-        </div>
-      </div>
+const totalIncome = data.reduce((total, item) => {
+  return total + item.income;
+}, 0);
 
-      {/* Expenses */}
-      <div className="flex flex-1 items-center justify-center border-r border-gray-300">
-        <div className="flex items-center gap-4">
-          <div className="flex items-center justify-center w-14 h-14 rounded-2xl bg-red-100 ">
-            <FontAwesomeIcon icon={faBagShopping} className="text-red-500 fa-2x" />
-          </div>
-          <ul className="flex flex-col">
-            <li className="font-semibold">Expenses</li>
-            <li className="font-medium text-2xl text-red-500">$50</li>
-            <li className="text-sm text-gray-500">This month</li>
-          </ul>
-        </div>
-      </div>
+const totalExpense = data.reduce((total, item) => {
+  return total + item.expense;
+}, 0);
 
-      {/* Budget Left */}
-      <div className="flex flex-1 items-center justify-center border-r border-gray-300">
-        <div className="flex items-center gap-4">
-          <div className="flex items-center justify-center w-14 h-14 rounded-2xl bg-green-100">
-            <FontAwesomeIcon icon={faChartColumn} className="text-green-500 fa-2x" />
-          </div>
-          <ul className="flex flex-col">
-            <li className="font-semibold">Budget Left</li>
-            <li className="font-medium text-2xl text-green-500">$50</li>
-            <li className="text-sm text-gray-500">This month</li>
-          </ul>
-        </div>
-      </div>
+const netCashFlow = totalIncome - totalExpense;
 
-      {/* Net Worth */}
-      <div className="flex flex-1 items-center justify-center">
-        <div className="flex items-center gap-4">
-          <div className="flex items-center justify-center w-14 h-14 rounded-2xl bg-yellow-100">
-            <FontAwesomeIcon icon={faCoins} className="text-yellow-500 fa-2x" />
-          </div>
-          <ul className="flex flex-col">
-            <li className="font-semibold">Net Worth</li>
-            <li className="font-medium text-2xl text-yellow-500">$100</li>
-            <li className="text-sm text-gray-500">This month</li>
-          </ul>
+
+export default function CashFlwoSummary() {
+    return (
+        <div className="h-90 w-[30%] rounded-3xl bg-white p-6 border-2 border-gray-200 shadow-sm">
+            <h2 className="text-lg font-semibold">
+                Cash flow summary
+            </h2>
+
+            <p className="mt-2 mb-6 text-sm text-gray-500">
+                This month
+            </p>
+
+            <ul className="flex flex-col gap-4 text-lg">
+                <li className="flex justify-between font-medium border-b border-gray-200 py-4 px-2 gap-4">Total Income <p className="text-green-600">${totalIncome.toLocaleString()}</p></li>
+                <li className="flex justify-between font-medium border-b border-gray-200 py-4 px-2 gap-4">Total Expense <p className="text-red-600">${totalExpense.toLocaleString()}</p> </li>
+                <li className="flex justify-between font-medium text-green-700 bg-green-200 rounded-2xl py-4 px-2 gap-4">Net Cash Flow <p className="text-green-700">${netCashFlow.toLocaleString()}</p> </li>
+            </ul>
         </div>
-      </div>
-    </div>
-  );
+    )
 }
