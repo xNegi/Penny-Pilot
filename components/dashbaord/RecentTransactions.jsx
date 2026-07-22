@@ -8,7 +8,7 @@ export default function RecentTransactions() {
 
             <div className="mt-6">
                 <ul>
-                    <div className="flex justify-between border-b border-gray-300">
+                    <div className="flex justify-between">
                         <li className="text-lg font-semibold">
                             Starbucks
                             <div className="flex gap-4 mb-2 ">
@@ -18,7 +18,7 @@ export default function RecentTransactions() {
                         </li>
                         <p className="text-lg font-semibold text-red-500">-$2.64</p>
                     </div>
-                    <div className="flex justify-between border-b border-gray-300 mt-2">
+                    <div className="flex justify-between border-t border-gray-300 mt-2">
                     <li className="text-lg font-semibold">
                         Uber
                         <div className="flex gap-4 mb-2">
@@ -29,7 +29,7 @@ export default function RecentTransactions() {
                      <p className="text-lg font-semibold text-red-500">-$5.24</p>
                     </div>
 
-                    <div className="flex justify-between border-b border-gray-300 mt-2">
+                    <div className="flex justify-between border-t border-gray-300 mt-2">
                     <li className="text-lg font-semibold">
                         Shopping
                         <div className="flex gap-4 mb-2">
@@ -40,7 +40,7 @@ export default function RecentTransactions() {
                     <p className="text-lg font-semibold text-red-500">-$15.74</p>
                     </div>
 
-                    <div className="flex justify-between  mt-2">
+                    <div className="flex justify-between border-t border-gray-300 mt-2">
                     <li className="text-lg font-semibold">
                         Salary Deposit
                         <div className="flex gap-4 mb-2">

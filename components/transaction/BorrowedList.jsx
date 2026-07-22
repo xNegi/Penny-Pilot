@@ -16,7 +16,7 @@ export default function BorrowedList() {
       </div>
 
       {/* borrow from list */}
-      <div className="mt-4 border border-gray-200 rounded-2xl p-4">
+      <div className="mt-4 border border-gray-300 rounded-2xl p-4">
         <ul className="space-y-4">
           <li className="flex items-center justify-between">
             <div className="flex items-center gap-3">
