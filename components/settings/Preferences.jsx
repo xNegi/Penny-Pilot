@@ -1,21 +1,52 @@
 import SettingsCard from "./SettingsCard";
 import SettingRow from "./SettingsRow";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGear } from "@fortawesome/free-solid-svg-icons";
 import {
-  fa
-} from "@fortawesome/free-regular-svg-icons";
+  faSliders,
+  faPalette,
+  faBell,
+  faUserShield,
+  faAngleRight,
+} from "@fortawesome/free-solid-svg-icons";
 
 export default function Preferences() {
   return (
     <SettingsCard
       title="Preferences"
       description="Customize your app"
-      icon={<FontAwesomeIcon icon={faGear}/>}
+      icon={<FontAwesomeIcon icon={faSliders} />}
     >
-      <p>Theme</p>
-      <p>Notifications</p>
-      <p>Privacy</p>
+      <SettingRow
+        icon={<FontAwesomeIcon icon={faPalette} />}
+        title="Theme"
+        subtitle="Choose your preferred theme"
+        right={
+          <div className="flex gap-2">
+            <button>Dark</button>
+            <button>Light</button>
+          </div>
+        }
+      />
+      <SettingRow
+        icon={<FontAwesomeIcon icon={faBell} />}
+        title="Theme"
+        subtitle="Choose your preferred theme"
+        right={
+          <button>
+            <FontAwesomeIcon icon={faAngleRight} />
+          </button>
+        }
+      />
+      <SettingRow
+        icon={<FontAwesomeIcon icon={faUserShield} />}
+        title="Privacy"
+        subtitle="Manage your privacy settings"
+        right={
+          <button>
+            <FontAwesomeIcon icon={faAngleRight} />
+          </button>
+        }
+      />
     </SettingsCard>
   );
 }

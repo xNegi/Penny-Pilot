@@ -8,7 +8,7 @@ export default function SettingRow({ icon, title, subtitle, right }) {
           <p className="text-gray-500 text-sm">{subtitle}</p>
         </div>
       </div>
-        <p className="text-gray-500 text-sm">{right}</p>
+        <div className="text-gray-500 text-sm">{right}</div>
     </div>
 
   );

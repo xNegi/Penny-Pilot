@@ -1,10 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPhone } from "@fortawesome/free-solid-svg-icons";
 import {
+  faPhone,
   faUser,
   faCalendar,
   faEnvelope,
-} from "@fortawesome/free-regular-svg-icons";
+} from "@fortawesome/free-solid-svg-icons";
 import SettingsCard from "./SettingsCard";
 import SettingRow from "./SettingsRow";
 
