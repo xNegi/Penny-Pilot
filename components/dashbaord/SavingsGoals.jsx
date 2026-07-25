@@ -3,7 +3,7 @@ import { faGifts , faPlane , faBurger ,faHouseFlag ,faCarSide} from '@fortawesom
 
 export default function SavingsGoals() {
     return (
-         <div className="h-90 w-[33%] rounded-3xl bg-white p-6 border-2 border-gray-200 shadow-sm">
+         <div className="h-90 w-full rounded-3xl bg-white p-6 border-2 border-gray-200 shadow-sm">
             <h2 className="text-lg font-semibold">Saving Goals</h2>
             <p className="mb-6 text-sm text-gray-500">"A penny saved is a penny earned."</p>
 

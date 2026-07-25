@@ -3,7 +3,7 @@ import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
 export default function RecentTransactions() {
     return (
-         <div className="h-90 w-[33%] rounded-3xl bg-white p-6 border-2 border-gray-200 shadow-sm">
+         <div className="h-90 w-full rounded-3xl bg-white p-6 border-2 border-gray-200 shadow-sm">
             <h2 className="text-lg font-semibold">Recent Transaction <FontAwesomeIcon icon={faAngleDown} className='text-gray-400'> </FontAwesomeIcon></h2>
 
             <div className="mt-6">

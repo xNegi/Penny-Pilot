@@ -6,7 +6,7 @@ import {
   faCoins,
 } from "@fortawesome/free-solid-svg-icons";
 
-export default function CashFlowSummary() {
+export default function CashFlow() {
   return (
     <div className=" h-24 flex items-center justify-between  overflow-hidden gap-2 border-2 border-gray-200 shadow-sm rounded-2xl p-4">
       {/* Income */}

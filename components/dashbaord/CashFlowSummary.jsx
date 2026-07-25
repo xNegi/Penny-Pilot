@@ -21,7 +21,7 @@ const netCashFlow = totalIncome - totalExpense;
 
 export default function CashFlwoSummary() {
     return (
-        <div className="h-90 w-[30%] rounded-3xl bg-white p-6 border-2 border-gray-200 shadow-sm">
+        <div className="h-90 w-full rounded-3xl bg-white p-6 border-2 border-gray-200 shadow-sm">
             <h2 className="text-lg font-semibold">
                 Cash flow summary
             </h2>
