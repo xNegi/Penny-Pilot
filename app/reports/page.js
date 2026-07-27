@@ -8,7 +8,7 @@ import PennyPilotCard from "@/components/cards/PennyPilotCard";
 
 export default function Page() {
   return (
-    <div className="flex items-stretch gap-4 px-8 py-4">
+    <div className="flex items-stretch gap-4 px-4 py-2">
       {/* Left */}
       <div className="w-3/5 flex flex-col gap-4">
         <ReportHeader />

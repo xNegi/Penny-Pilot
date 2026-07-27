@@ -7,7 +7,7 @@ import MoneyTracker from "@/components/transaction/MoneyTracker";
 
 export default function Page() {
     return (
-        <div className="flex flex-col gap-4 my-4 mx-8">
+        <div className="flex flex-col gap-4 my-2 mx-4">
             <TransactionHeader/>
             <CashFlowSummary/>
             <div className="flex gap-4">

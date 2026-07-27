@@ -9,7 +9,7 @@ import CashFlwoSummary from "@/components/dashbaord/CashFlowSummary";
 
 export default function Page() {
   return (
-    <div className="flex flex-col gap-4 my-4 mx-8">
+    <div className="flex flex-col gap-4 my-2 mx-4">
       <DashboardHeader />
       <BalanceCard />
       <CashFlowCard />
