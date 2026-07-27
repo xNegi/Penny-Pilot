@@ -64,7 +64,7 @@ export default function TransactionHistory() {
                      <p className="text-lg font-semibold text-green-500">+$200.24</p>
                     </div>
                 </ul>
-                <div className="flex items-center justify-center mt-2 font-medium text-violet-700">
+                <div className="flex items-center justify-center mt-5 font-medium text-violet-700">
                     <button>View all transactions</button>
                 </div>
             </div>

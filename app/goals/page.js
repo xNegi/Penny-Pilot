@@ -1,8 +1,9 @@
+import ComingSoon from "@/components/cards/ComingSoon";
+
 export default function Page() {
     return (
-        <div>
-            <h1>goals</h1>
-            <p>this is the goals page</p>
+        <div className="flex flex-col flex-1 h-full gap-4 my-4 mx-8">
+            <ComingSoon/>
         </div>
     );
 }
