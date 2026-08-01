@@ -1,3 +1,5 @@
+import { FaPlus } from "react-icons/fa"
+
 export default function TransactionHeader() {
   const today = new Date();
 
@@ -11,7 +13,10 @@ export default function TransactionHeader() {
       </div>
 
       <div className="text-right">
-        <button className="text-violet-700 bg-violet-200 rounded-2xl p-2 font-medium">+ Add Transaction</button>
+        <button className="flex items-center gap-2 bg-violet-600 hover:bg-violet-700 text-white px-5 py-2.5 rounded-2xl font-medium transition">
+          <FaPlus />
+          Add Transaction
+          </button>
       </div>
     </header>
   );

@@ -5,7 +5,7 @@ export default function SettingsCard({
   children,
 }) {
   return (
-    <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
+    <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm hover:shadow-md transition">
       {/* Header */}
       <div className="flex items-center gap-4 mb-4">
         <div className="w-12 h-12 rounded-xl bg-violet-100 text-violet-700 text-2xl flex items-center justify-center">

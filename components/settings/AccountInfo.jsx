@@ -26,7 +26,7 @@ export default function AccountInfo() {
             <p className="text-sm text-gray-500">aryan@gmail.com</p>
           </div>
         </div>
-        <button className="border border-violet-600 text-violet-600 font-semibold text-sm rounded-2xl p-2">
+        <button className="border border-violet-600 text-violet-600 hover:bg-violet-200 transition font-semibold text-sm rounded-2xl p-2">
           Edit Profile
         </button>
       </div>
