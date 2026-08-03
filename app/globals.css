@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
-body {
-    margin: 0;
+.pennypilot-bg {
+  background-image: url("/images/pennypilot_bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
 }

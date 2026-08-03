@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en" className= "h-full antialiased font-sans">
-      <body className={`${plusJakartaSans.className} h-full min-h-full bg-white`}>
+      <body className={`${plusJakartaSans.className} h-full min-h-full pennypilot-bg`}>
         <div className="flex min-h-screen">
 
           {/* Sidebar (LEFT) */}

@@ -8,7 +8,7 @@ import {
 
 export default function CashFlow() {
   return (
-    <div className=" h-24 flex items-center justify-between  overflow-hidden gap-2 border-2 border-gray-200 shadow-sm rounded-2xl p-4">
+    <div className=" h-24 flex items-center justify-between  overflow-hidden gap-2 border-2 border-gray-200 shadow-sm rounded-2xl p-4 bg-white">
       {/* Income */}
       <div className="flex flex-1 items-center ml-4 border-r border-gray-300">
         <div className="flex items-center gap-4">
