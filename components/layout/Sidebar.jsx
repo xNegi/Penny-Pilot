@@ -1,6 +1,6 @@
 "use client";
+import { useRouter } from "next/navigation";
 
-import react from "react";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -17,11 +17,15 @@ import { usePathname } from "next/navigation";
 
 export default function Sidebar() {
   const pathname = usePathname();
-
+  const router = useRouter();
+  const handleClick = () => {
+    router.push("/dashboard");
+  }
+  
   return (
     <aside className="w-58 self-stretch bg-[#F9FAFB] flex flex-col border-r-2 gap-6 border-gray-200  ">
       <div className="flex items-center justify-center gap-2 h-18 px-4 py-4 ">
-        <span className="text-2xl font-bold text-violet-700">
+        <span onClick={handleClick} className="text-2xl font-bold text-violet-700 hover:cursor-pointer">
           Penny Pilot <FontAwesomeIcon icon={faPaperPlane} />
         </span>
       </div>
