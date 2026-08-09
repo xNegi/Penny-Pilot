@@ -1,6 +1,6 @@
 "use client";
-import { useRouter } from "next/navigation";
 
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -23,7 +23,7 @@ export default function Sidebar() {
   }
   
   return (
-    <aside className="w-58 self-stretch bg-[#F9FAFB] flex flex-col border-r-2 gap-6 border-gray-200  ">
+    <aside className="w-58 self-stretch flex flex-col border-r-2 gap-6 border-gray-200  ">
       <div className="flex items-center justify-center gap-2 h-18 px-4 py-4 ">
         <span onClick={handleClick} className="text-2xl font-bold text-violet-700 hover:cursor-pointer">
           Penny Pilot <FontAwesomeIcon icon={faPaperPlane} />
@@ -39,8 +39,8 @@ export default function Sidebar() {
               href="/dashboard"
               className={`flex w-full h-8 items-center gap-3 rounded-lg px-4 py-3 transition-colors ${
                 pathname === "/dashboard"
-                  ? "bg-violet-100 text-violet-600"
-                  : "text-gray-500 hover:bg-violet-100 hover:text-violet-600"
+                  ? "bg-violet-200 text-violet-600"
+                  : "text-gray-500 hover:bg-violet-200 hover:text-violet-600"
               }`}
             >
               <FontAwesomeIcon icon={faHouse} className="w-5 shrink-0" />
@@ -53,8 +53,8 @@ export default function Sidebar() {
               href="/transactions"
               className={`flex w-full h-8 items-center gap-3 rounded-lg px-4 py-3 transition-colors ${
                 pathname === "/transactions"
-                  ? "bg-violet-100 text-violet-600"
-                  : "text-gray-500 hover:bg-violet-100 hover:text-violet-600"
+                  ? "bg-violet-200 text-violet-600"
+                  : "text-gray-500 hover:bg-violet-200 hover:text-violet-600"
               }`}
             >
               <FontAwesomeIcon icon={faCreditCard} className="w-5 shrink-0" />
@@ -67,8 +67,8 @@ export default function Sidebar() {
               href="/budgets"
               className={`flex w-full h-8 items-center gap-3 rounded-lg px-4 py-3 transition-colors ${
                 pathname === "/budgets"
-                  ? "bg-violet-100 text-violet-600"
-                  : "text-gray-500 hover:bg-violet-100 hover:text-violet-600"
+                  ? "bg-violet-200 text-violet-600"
+                  : "text-gray-500 hover:bg-violet-200 hover:text-violet-600"
               }`}
             >
               <FontAwesomeIcon icon={faChartPie} className="w-5 shrink-0" />
@@ -81,8 +81,8 @@ export default function Sidebar() {
               href="/goals"
               className={`flex w-full h-8 items-center gap-3 rounded-lg px-4 py-3 transition-colors ${
                 pathname === "/goals"
-                  ? "bg-violet-100 text-violet-600"
-                  : "text-gray-500 hover:bg-violet-100 hover:text-violet-600"
+                  ? "bg-violet-200 text-violet-600"
+                  : "text-gray-500 hover:bg-violet-200 hover:text-violet-600"
               }`}
             >
               <FontAwesomeIcon icon={faBullseye} className="w-5 shrink-0" />
@@ -95,8 +95,8 @@ export default function Sidebar() {
               href="/reports"
               className={`flex w-full h-8 items-center gap-3 rounded-lg px-4 py-3 transition-colors ${
                 pathname === "/reports"
-                  ? "bg-violet-100 text-violet-600"
-                  : "text-gray-500 hover:bg-violet-100 hover:text-violet-600"
+                  ? "bg-violet-200 text-violet-600"
+                  : "text-gray-500 hover:bg-violet-200 hover:text-violet-600"
               }`}
             >
               <FontAwesomeIcon icon={faChartPie} className="w-5 shrink-0" />
@@ -109,8 +109,8 @@ export default function Sidebar() {
               href="/accounts"
               className={`flex w-full h-8 items-center gap-3 rounded-lg px-4 py-3 transition-colors ${
                 pathname === "/accounts"
-                  ? "bg-violet-100 text-violet-600"
-                  : "text-gray-500 hover:bg-violet-100 hover:text-violet-600"
+                  ? "bg-violet-200 text-violet-600"
+                  : "text-gray-500 hover:bg-violet-200 hover:text-violet-600"
               }`}
             >
               <FontAwesomeIcon icon={faWallet} className="w-5 shrink-0" />
@@ -123,8 +123,8 @@ export default function Sidebar() {
               href="/categories"
               className={`flex w-full h-8 items-center gap-3 rounded-lg px-4 py-3 transition-colors ${
                 pathname === "/categories"
-                  ? "bg-violet-100 text-violet-600"
-                  : "text-gray-500 hover:bg-violet-100 hover:text-violet-600"
+                  ? "bg-violet-200 text-violet-600"
+                  : "text-gray-500 hover:bg-violet-200 hover:text-violet-600"
               }`}
             >
               <FontAwesomeIcon icon={faList} className="w-5 shrink-0" />
@@ -137,8 +137,8 @@ export default function Sidebar() {
               href="/settings"
               className={`flex w-full h-8 items-center gap-3 rounded-lg px-4 py-3 transition-colors ${
                 pathname === "/settings"
-                  ? "bg-violet-100 text-violet-600"
-                  : "text-gray-500 hover:bg-violet-100 hover:text-violet-600"
+                  ? "bg-violet-200 text-violet-600"
+                  : "text-gray-500 hover:bg-violet-200 hover:text-violet-600"
               }`}
             >
               <FontAwesomeIcon icon={faGear} className="w-5 shrink-0" />

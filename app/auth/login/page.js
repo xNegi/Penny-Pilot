@@ -1,8 +1,9 @@
+import LoginForm from "@/components/auth/LoginForm";
+
 export default function LoginPage() {
     return (
-        <div>
-            <h2>This is login page </h2>
-            <p>Login to your accoount</p>
+        <div className="flex flex-col gap-4 my-2 mx-4">
+            <LoginForm />
         </div>
     )
 }
