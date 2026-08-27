@@ -1,3 +1,5 @@
+"use client";
+
 import SettingsCard from "./SettingsCard";
 import SettingRow from "./SettingsRow";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,8 +9,11 @@ import {
   faUserAltSlash,
   faAngleRight, 
 } from "@fortawesome/free-solid-svg-icons";
+import { useAuth } from "@/context/AuthContext";
 
 export default function AccountAction() {
+  const { logout } = useAuth();
+
   return (
     <SettingsCard
       title="Account Action"
@@ -19,6 +24,10 @@ export default function AccountAction() {
         icon={<FontAwesomeIcon icon={faArrowRightFromBracket} className="text-red-600" />}
         title="Logout"
         subtitle="Sign out form your account"
+        onClick={()=> {
+          logout();
+          alert("User Logged-out successfully")
+        }}
         right={
           <button>
             <FontAwesomeIcon icon={faAngleRight} className="text-red-600"/>

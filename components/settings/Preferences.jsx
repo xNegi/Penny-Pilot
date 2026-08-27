@@ -29,8 +29,8 @@ export default function Preferences() {
       />
       <SettingRow
         icon={<FontAwesomeIcon icon={faBell} />}
-        title="Theme"
-        subtitle="Choose your preferred theme"
+        title="Notification"
+        subtitle="Manage your notification prefrence"
         right={
           <button>
             <FontAwesomeIcon icon={faAngleRight} />

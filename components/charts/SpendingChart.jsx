@@ -9,19 +9,48 @@ import {
   Legend,
 } from "recharts";
 
-const data = [
-  { name: "Food", value: 500 },
-  { name: "Transport", value: 300 },
-  { name: "Shopping", value: 700 },
+const COLORS = [
+  "#8B5CF6",
+  "#EF4444",
+  "#F59E0B",
+  "#22C55E",
+  "#3B82F6",
+  "#EC4899",
+  "#14B8A6",
 ];
 
-const COLORS = ["#8B5CF6", "#EF4444", "#F59E0B"];
+export default function SpendingChart({ transactions = [] }) {
+  const categoryTotals = transactions
+    .filter((transaction) => transaction.type === "expense")
+    .reduce((data, transaction) => {
+      const category = transaction.category || "Other";
+      const amount = Number(transaction.amount);
 
-export default function SpendingChart() {
+      if (!data[category]) {
+        data[category] = 0;
+      }
+
+      data[category] += amount;
+
+      return data;
+    }, {});
+
+  const data = Object.entries(categoryTotals).map(
+    ([name, value]) => ({
+      name,
+      value,
+    })
+  );
+
   return (
     <div className="h-90 w-full rounded-3xl bg-white p-6 border-2 border-gray-200 shadow-sm">
-      <h2 className="text-lg font-semibold">Spending by Category</h2>
-      <p className="mb-6 text-sm text-gray-500">This month</p>
+      <h2 className="text-lg font-semibold">
+        Spending by Category
+      </h2>
+
+      <p className="mb-6 text-sm text-gray-500">
+        All transactions
+      </p>
 
       <ResponsiveContainer width="100%" height="80%">
         <PieChart>
@@ -39,7 +68,12 @@ export default function SpendingChart() {
             ))}
           </Pie>
 
-          <Tooltip />
+          <Tooltip
+            formatter={(value) =>
+              `₹${Number(value).toLocaleString("en-IN")}`
+            }
+          />
+
           <Legend />
         </PieChart>
       </ResponsiveContainer>

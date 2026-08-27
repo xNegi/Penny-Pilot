@@ -6,7 +6,10 @@ import {
   faCoins,
 } from "@fortawesome/free-solid-svg-icons";
 
-export default function CashFlow() {
+export default function CashFlow({ income, expense }) {
+  const budgetLeft = Number(income) - Number(expense);
+  const netWorth = Number(income) - Number(expense)
+
   return (
     <div className=" h-24 flex items-center justify-between  overflow-hidden gap-2 border-2 border-gray-200 shadow-sm rounded-2xl p-4 bg-white">
       {/* Income */}
@@ -17,8 +20,8 @@ export default function CashFlow() {
           </div>
           <ul className="flex flex-col">
             <li className="font-semibold">Income</li>
-            <li className="font-medium text-2xl text-violet-700">$100</li>
-            <li className="text-sm text-gray-500">This month</li>
+            <li className="font-medium text-2xl text-violet-700"> ₹{Number(income).toFixed(2)}</li>
+            <li className="text-sm text-gray-500">Total income</li>
           </ul>
         </div>
       </div>
@@ -31,8 +34,8 @@ export default function CashFlow() {
           </div>
           <ul className="flex flex-col">
             <li className="font-semibold">Expenses</li>
-            <li className="font-medium text-2xl text-red-500">$50</li>
-            <li className="text-sm text-gray-500">This month</li>
+            <li className="font-medium text-2xl text-red-500">₹{Number(expense).toFixed(2)}</li>
+            <li className="text-sm text-gray-500">Total expense</li>
           </ul>
         </div>
       </div>
@@ -45,8 +48,8 @@ export default function CashFlow() {
           </div>
           <ul className="flex flex-col">
             <li className="font-semibold">Budget Left</li>
-            <li className="font-medium text-2xl text-green-500">$50</li>
-            <li className="text-sm text-gray-500">This month</li>
+            <li className="font-medium text-2xl text-green-500">₹{Number(budgetLeft).toFixed(2)}</li>
+            <li className="text-sm text-gray-500">Total budgetleft</li>
           </ul>
         </div>
       </div>
@@ -59,8 +62,8 @@ export default function CashFlow() {
           </div>
           <ul className="flex flex-col">
             <li className="font-semibold">Net Worth</li>
-            <li className="font-medium text-2xl text-yellow-500">$100</li>
-            <li className="text-sm text-gray-500">This month</li>
+            <li className="font-medium text-2xl text-yellow-500">₹{Number(netWorth).toFixed(2)}</li>
+            <li className="text-sm text-gray-500">Total networth</li>
           </ul>
         </div>
       </div>

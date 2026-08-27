@@ -1,7 +1,9 @@
 import { FaPlus } from "react-icons/fa"
 
-export default function TransactionHeader() {
+export default function TransactionHeader({ onAddTransaction }) {
   const today = new Date();
+
+
 
   return (
     <header className="flex items-center justify-between">
@@ -13,7 +15,9 @@ export default function TransactionHeader() {
       </div>
 
       <div className="text-right">
-        <button className="flex items-center gap-2 bg-violet-600 hover:bg-violet-700 text-white px-5 py-2.5 rounded-2xl font-medium transition">
+        <button 
+        onClick={onAddTransaction}
+        className="flex items-center gap-2 bg-violet-600 hover:bg-violet-700 text-white px-5 py-2.5 rounded-2xl font-medium transition">
           <FaPlus />
           Add Transaction
           </button>

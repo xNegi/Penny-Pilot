@@ -6,19 +6,53 @@ import { FaPiggyBank } from "react-icons/fa6";
 import { CiUser, CiLock } from "react-icons/ci";
 import { FaArrowRight, FaGoogle } from "react-icons/fa";
 import { TiVendorMicrosoft } from "react-icons/ti";
+import { FiEye, FiEyeOff } from "react-icons/fi";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
 
 export default function LoginForm() {
-  const [email, setEmail] = useState("");
+  const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
+  const [showpassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
+  const router = useRouter();
+  const { fetchUser } = useAuth();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+ const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    console.log({
-      email,
-      password,
+  setError("");
+
+  try{
+    const response = await fetch ("/api/auth/login",{
+      method: "POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body: JSON.stringify({
+        identifier,
+        password,
+      }),
     });
-  };
+
+    const data = await response.json();
+
+    console.log(data);
+
+    if (response.ok){
+      alert("User Logged-in successfully");
+      await fetchUser();
+      router.push("/settings");
+      return;
+    }
+
+    setError(data.message);
+
+  } catch(error){
+    console.error("Login request failed:", error);
+    setError("Somehing went wrong. Please try again.");
+  }
+};
 
   return (
     <div className="flex flex-col items-center justify-center gap-6 bg-gray-100/30 border border-gray-300 rounded-2xl shadow-sm p-4">
@@ -40,10 +74,11 @@ export default function LoginForm() {
       </div>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-5 mt-4">
+         {error && <p className="text-sm text-red-500">{error}</p>}
         {/* Email */}
         <div className="flex flex-col gap-2">
-          <label htmlFor="email" className="text-sm font-bold text-gray-700">
-            Email 
+          <label htmlFor="identifier" className="text-sm font-bold text-gray-700">
+            Email / Username / MobileNo.
           </label>
           <div className="relative">
             <CiUser
@@ -52,11 +87,11 @@ export default function LoginForm() {
             />
 
             <input
-              id="email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email "
+              id="loginIdentifier"
+              type="text"
+              value={identifier}
+              onChange={(e) => setIdentifier(e.target.value)}
+              placeholder="Enter your email, username or mobile no. "
               required
               className="w-100 rounded-lg border border-gray-300 px-4 py-3 pl-10 outline-none transition focus:border-violet-500 focus:ring-2 focus:ring-violet-200"
             />
@@ -75,13 +110,20 @@ export default function LoginForm() {
             />
           <input
             id="password"
-            type="password"
+            type={showpassword ? "text" : "password"}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder=" Enter your password"
             required
             className="w-full rounded-lg border border-gray-300 px-4 py-3 pl-10 outline-none transition focus:border-violet-500 focus:ring-2 focus:ring-violet-200"
           />
+          <button
+            type="button"
+            onClick={() => setShowPassword((prev) => !prev)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
+          >
+            {showpassword ? <FiEye size={20}/> : <FiEyeOff size={20}/>}
+          </button>
           </div>
         </div>
 

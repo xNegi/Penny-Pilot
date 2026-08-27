@@ -3,31 +3,64 @@
 import Link from "next/link";
 import { useState } from "react";
 import { FaPiggyBank } from "react-icons/fa6";
-import { CiUser, CiLock, CiAt } from "react-icons/ci";
+import { CiUser, CiLock, CiAt, CiMobile1 } from "react-icons/ci";
 import { SlEnvolope } from "react-icons/sl";
 import { FaArrowRight, FaGoogle } from "react-icons/fa";
 import { TiVendorMicrosoft } from "react-icons/ti";
 import { FiEye, FiEyeOff } from "react-icons/fi";
+import { useRouter } from "next/navigation";
 
 export default function SignupForm() {
   const [fullname, setFullName] = useState("");
   const [email, setEmail] = useState("");
+  const [mobilenumber, setMobileNumber] = useState("");
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmpassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [error, setError] = useState("");
+  const router = useRouter();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log({
-      fullname,
-      email,
-      username,
-      password,
-      confirmpassword,
-    });
+    //clear previous errors
+    setError("");
+
+    try {
+      const response = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fullName: fullname,
+          email: email,
+          mobileNumber: mobilenumber,
+          userName: username,
+          password: password,
+          confirmPassword: confirmpassword,
+        }),
+      });
+
+      const data = await response.json();
+
+      console.log(data);
+
+      if (response.ok) {
+        alert("User Created Successfully");
+        router.push("/auth/login");
+        return;
+      }
+
+      //signup failed
+      setError(data.message);
+      
+    } catch (error) {
+      console.error("Signup request failed:", error);
+      setError("Something went wrong. Please try again.");
+    }
   };
 
   return (
@@ -50,6 +83,7 @@ export default function SignupForm() {
       </div>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-5 mt-4">
+        {error && <p className="text-sm text-red-500">{error}</p>}
         {/* fullname */}
         <div className="flex flex-col gap-2">
           <label htmlFor="fullname" className="text-sm font-bold text-gray-700">
@@ -88,6 +122,28 @@ export default function SignupForm() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
+              required
+              className="w-100 rounded-lg border border-gray-300 px-4 py-3 pl-10 outline-none transition focus:border-violet-500 focus:ring-2 focus:ring-violet-200"
+            />
+          </div>
+        </div>
+
+        {/* mobileNumber */}
+        <div className="flex flex-col gap-2">
+          <label htmlFor="email" className="text-sm font-bold text-gray-700">
+            Mobile Number
+          </label>
+          <div className="relative">
+            <CiMobile1
+              size={20}
+              className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-600"
+            />
+            <input
+              id="mobilenumber"
+              type="tel"
+              value={mobilenumber}
+              onChange={(e) => setMobileNumber(e.target.value)}
+              placeholder="Enter your mobile number"
               required
               className="w-100 rounded-lg border border-gray-300 px-4 py-3 pl-10 outline-none transition focus:border-violet-500 focus:ring-2 focus:ring-violet-200"
             />
@@ -172,18 +228,24 @@ export default function SignupForm() {
               onClick={() => setShowConfirmPassword((prev) => !prev)}
               className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
             >
-              {showConfirmPassword ? <FiEye size={20} /> : <FiEyeOff size={20} />}
+              {showConfirmPassword ? (
+                <FiEye size={20} />
+              ) : (
+                <FiEyeOff size={20} />
+              )}
             </button>
           </div>
           {confirmpassword && (
-            <p className={password === confirmpassword
-              ? "text-sm text-green-600"
-              : "text-sm text-red-600"
-            }>
-              {password === confirmpassword
-              ? "Password matches"
-              : "Password does not match"
+            <p
+              className={
+                password === confirmpassword
+                  ? "text-sm text-green-600"
+                  : "text-sm text-red-600"
               }
+            >
+              {password === confirmpassword
+                ? "Password matches"
+                : "Password does not match"}
             </p>
           )}
         </div>

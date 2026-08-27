@@ -1,6 +1,10 @@
-export default function SettingRow({ icon, title, subtitle, right }) {
+export default function SettingRow({ icon, title, subtitle, right, onClick }) {
   return (
-    <div className="flex items-center justify-between p-4 border-t border-gray-200 ">
+    <div 
+      onClick={onClick}
+      className={`flex items-center justify-between p-4 border-t border-gray-200 
+        ${onClick ? "cursor-pointer hover:bg-gray-50 transition" : ""}`}
+        >
       <div className="flex items-center justify-between gap-4">
         {icon}
         <div>
@@ -8,8 +12,7 @@ export default function SettingRow({ icon, title, subtitle, right }) {
           <p className="text-gray-500 text-sm">{subtitle}</p>
         </div>
       </div>
-        <div className="text-gray-500 text-sm">{right}</div>
+      <div className="text-gray-500 text-sm">{right}</div>
     </div>
-
   );
 }
