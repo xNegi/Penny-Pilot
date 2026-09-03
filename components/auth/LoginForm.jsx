@@ -153,7 +153,7 @@ export default function LoginForm() {
       <div>
         <p className="text-gray-600 text-sm py-4">
           Don't have an account?{" "}
-          <Link href="/auth/signup" className="text-violet-600 hover:underline">
+          <Link href="/auth/signup" className="text-violet-600 hover:underline ml-1">
             Sign Up
           </Link>
         </p>

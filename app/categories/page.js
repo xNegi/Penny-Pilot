@@ -3,7 +3,7 @@ import CategoryTable from "@/components/categories/CategoryTable";
 
 export default function Page() {
     return (
-        <div className="flex flex-col gap-4 my-2 mx-4">
+        <div className="min-h-[calc(100vh-22px)] flex flex-col gap-3 my-1 mx-2">
             <CategoryTable/>
         </div>
     );

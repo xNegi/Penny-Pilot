@@ -9,7 +9,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="h-26 border-t border-gray-200 py-6 mt-4 mx-8 ">
+    <footer className="shrink-0 border-t border-gray-200 py-4 mt-2 mx-8 ">
       <div className="flex flex-col items-center justify-center">
         <p className="flex items-center justify-center gap-3 text-sm text-gray-500 text-center">
           <span>© 2026 Penny Pilot</span>

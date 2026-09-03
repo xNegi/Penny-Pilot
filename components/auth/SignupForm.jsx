@@ -273,10 +273,10 @@ export default function SignupForm() {
         </button>
       </div>
 
-      <div>
+      <div className="">
         <p className="text-gray-600 text-sm py-4">
-          Don't have an account?
-          <Link href="/auth/login" className="text-violet-600 hover:underline">
+          Already have an account?
+          <Link href="/auth/login" className="text-violet-600 hover:underline ml-1">
             Login
           </Link>
         </p>

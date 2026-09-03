@@ -61,16 +61,12 @@ export default function AddTransaction({ onClose, transaction }) {
         person: category === "borrowed" || category === "lent" ? person : null,
       };
 
-      // =========================
       // EDIT
-      // =========================
       if (transaction) {
         await updateTransaction(transaction._id, transactionData);
       }
 
-      // =========================
       // ADD
-      // =========================
       else {
         await addTransaction(transactionData);
       }
@@ -186,7 +182,7 @@ export default function AddTransaction({ onClose, transaction }) {
               <option value="others">Others</option>
             </select>
             {(category === "borrowed" || category === "lent") && (
-                <div>
+                <div className="mt-4">
                   <label className="block text-sm font-medium mb-1">
                     {category === "borrowed" ? "Borrowed From" : "Lent To"}
                   </label>
@@ -197,8 +193,8 @@ export default function AddTransaction({ onClose, transaction }) {
                     onChange={(e) => setPerson(e.target.value)}
                     placeholder={
                       category === "borrowed"
-                        ? "e.g. Rohit Sharma"
-                        : "e.g. Cristiano Ronaldo"
+                        ? "e.g. Mukesh Ambani"
+                        : "e.g. Narendra Modi"
                     }
                     className="w-full border border-gray-300 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-violet-500"
                   />

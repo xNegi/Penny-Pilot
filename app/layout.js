@@ -3,18 +3,18 @@ import "./globals.css";
 import Sidebar from "@/components/layout/Sidebar";
 import Topbar from "@/components/layout/Topbar";
 import Footer from "@/components/layout/Footer";
+import MobileNav from "@/components/mobile/MobileNav";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import { AuthProvider } from "@/context/AuthContext";
 import { TransactionProvider } from "@/context/TransactionContext";
 
-
-config.autoAddCss = false; // Prevent Font Awesome from adding its CSS automatically
+config.autoAddCss = false;
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"], // Choose the weights you need
-  variable: "--font-plus-jakarta", // Optional: defining a CSS variable
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-plus-jakarta",
 });
 
 export const metadata = {
@@ -26,28 +26,25 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="h-full antialiased font-sans">
       <body
-        className={`${plusJakartaSans.className} h-full min-h-full pennypilot-bg`}
+        className={`${plusJakartaSans.className} h-full min-h-screen pennypilot-bg`}
       >
-        <AuthProvider>
-          <TransactionProvider>
-            <div className="flex min-h-screen">
-              {/* Sidebar (LEFT) */}
-              <Sidebar />
-
-              {/* RIGHT SECTION */}
-              <div className="flex flex-1 flex-col min-w-0">
-                {/* Topbar */}
-                <Topbar />
-
-                {/* Page Content */}
-                <main className="flex-1 p-2 overflow-y-auto">{children}</main>
-
-                {/* Footer */}
-                <Footer />
+        <div className="app-container">
+          <AuthProvider>
+            <TransactionProvider>
+              <div className="app-layout">
+                <Sidebar />
+                <div className="app-main">
+                  <Topbar />
+                  <main className="app-content">
+                    {children}
+                  </main>
+                  <Footer />
+                </div>
+                  <MobileNav />
               </div>
-            </div>
-          </TransactionProvider>
-        </AuthProvider>
+            </TransactionProvider>
+          </AuthProvider>
+        </div>
       </body>
     </html>
   );

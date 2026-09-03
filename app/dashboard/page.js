@@ -19,7 +19,7 @@ export default function Page() {
 
   if (authLoading) {
     return (
-      <div className="flex min-h-[500px] items-center justify-center">
+      <div className="flex min-h-[125] items-center justify-center">
         <div className="h-10 w-10 animate-spin rounded-full border-4 border-gray-300 border-t-black" />
       </div>
     );
@@ -28,7 +28,7 @@ export default function Page() {
   const displayTransactions = user ? transactions || [] : demoTransactions;
   if (user && transactionLoading) {
   return (
-    <div className="flex min-h-[500px] items-center justify-center">
+    <div className="flex min-h-[125] items-center justify-center">
       <div className="h-10 w-10 animate-spin rounded-full border-4 border-gray-300 border-t-black" />
     </div>
   );
@@ -43,7 +43,7 @@ const {
 
 
   return (
-    <div className="flex flex-col gap-4 my-2 mx-4">
+    <div className="flex flex-col gap-3 my-1 mx-2">
       <DashboardHeader />
 
       <BalanceCard balance={balance} />

@@ -50,9 +50,6 @@ export default function TransactionHistory({ onEdit }) {
 
   return (
     <>
-      {/* =========================
-          MAIN TRANSACTION CARD
-      ========================== */}
       <div className="h-self-stretch w-[65%] rounded-3xl bg-white p-4 border-2 border-gray-200 shadow-sm">
         <div className="flex items-center">
           <h2 className="text-lg font-semibold">
@@ -147,9 +144,6 @@ export default function TransactionHistory({ onEdit }) {
         </div>
       </div>
 
-      {/* =========================
-          ALL TRANSACTIONS MODAL
-      ========================== */}
       {showAll && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
           <div className="relative flex max-h-[90vh] w-full max-w-5xl flex-col overflow-hidden rounded-3xl bg-white shadow-2xl">
@@ -248,9 +242,6 @@ export default function TransactionHistory({ onEdit }) {
               </ul>
             </div>
 
-            {/* =========================
-                PAGINATION
-            ========================== */}
             {totalPages > 1 && (
               <div className="flex items-center justify-center gap-2 border-t border-gray-200 px-6 py-5">
                 

@@ -1,6 +1,8 @@
+import { useAuth } from "@/context/AuthContext";
 
 export default function DashboardHeader() {
     const today = new Date();
+    const { user, loading } = useAuth();
 
     const formattedDate = today.toLocaleDateString("en-US", {
     weekday: "long",
@@ -12,7 +14,7 @@ export default function DashboardHeader() {
     return (
         <header className="flex items-center justify-between">
             <div>
-                <h1 className="text-xl font-bold">Good morning, User!👋</h1>
+                <h1 className="text-xl font-bold">Greetings , { loading ? "Loading..." : user?.fullName || "User" }👋</h1>
                 <p className="text-gray-500">Here's your money snapshot for today.</p>
             </div>
 

@@ -35,12 +35,7 @@ const transactionSchema = new mongoose.Schema(
       required: true,
       default: Date.now,
     },
-
-    paymentMethod: {
-      type: String,
-      enum: ["cash", "card", "upi", "bank", "other"],
-      default: "other",
-    },
+    
     person: {
       type: String,
       default: null,

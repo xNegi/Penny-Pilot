@@ -23,17 +23,17 @@ export default function Sidebar() {
   }
   
   return (
-    <aside className="w-58 self-stretch flex flex-col border-r-2 gap-6 border-gray-200  ">
-      <div className="flex items-center justify-center gap-2 h-18 px-4 py-4 ">
-        <span onClick={handleClick} className="text-2xl font-bold text-violet-700 hover:cursor-pointer">
+    <aside className="hidden md:flex w-56 self-stretch shrink-0 flex-col border-r-2 gap-4 border-gray-200  ">
+      <div className="flex items-center justify-center gap-2 h-16 px-3 py-3 ">
+        <span onClick={handleClick} className="text-xl font-bold text-violet-700 hover:cursor-pointer whitespace-nowrap">
           Penny Pilot <FontAwesomeIcon icon={faPaperPlane} />
         </span>
       </div>
 
       {/* menu items of sidebar */}
 
-      <nav className="h-[60vh] text-gray-500 px-4 pl-8">
-        <ul className=" flex flex-col gap-4 font-medium w-full">
+      <nav className="flex-1 text-gray-500 px-3 pl-5">
+        <ul className=" flex flex-col gap-2 font-medium w-full">
           <li>
             <Link
               href="/dashboard"
@@ -43,7 +43,7 @@ export default function Sidebar() {
                   : "text-gray-500 hover:bg-violet-200 hover:text-violet-600"
               }`}
             >
-              <FontAwesomeIcon icon={faHouse} className="w-5 shrink-0" />
+              <FontAwesomeIcon icon={faHouse} className="w-4 shrink-0" />
               Dashboard
             </Link>
           </li>
@@ -57,7 +57,7 @@ export default function Sidebar() {
                   : "text-gray-500 hover:bg-violet-200 hover:text-violet-600"
               }`}
             >
-              <FontAwesomeIcon icon={faCreditCard} className="w-5 shrink-0" />
+              <FontAwesomeIcon icon={faCreditCard} className="w-4 shrink-0" />
               Transactions
             </Link>
           </li>
@@ -71,7 +71,7 @@ export default function Sidebar() {
                   : "text-gray-500 hover:bg-violet-200 hover:text-violet-600"
               }`}
             >
-              <FontAwesomeIcon icon={faChartPie} className="w-5 shrink-0" />
+              <FontAwesomeIcon icon={faChartPie} className="w-4 shrink-0" />
               Budgets
             </Link>
           </li>
@@ -85,7 +85,7 @@ export default function Sidebar() {
                   : "text-gray-500 hover:bg-violet-200 hover:text-violet-600"
               }`}
             >
-              <FontAwesomeIcon icon={faBullseye} className="w-5 shrink-0" />
+              <FontAwesomeIcon icon={faBullseye} className="w-4 shrink-0" />
               Goals
             </Link>
           </li>
@@ -99,7 +99,7 @@ export default function Sidebar() {
                   : "text-gray-500 hover:bg-violet-200 hover:text-violet-600"
               }`}
             >
-              <FontAwesomeIcon icon={faChartPie} className="w-5 shrink-0" />
+              <FontAwesomeIcon icon={faChartPie} className="w-4 shrink-0" />
               Reports
             </Link>
           </li>
@@ -113,7 +113,7 @@ export default function Sidebar() {
                   : "text-gray-500 hover:bg-violet-200 hover:text-violet-600"
               }`}
             >
-              <FontAwesomeIcon icon={faWallet} className="w-5 shrink-0" />
+              <FontAwesomeIcon icon={faWallet} className="w-4 shrink-0" />
               Accounts
             </Link>
           </li>
@@ -127,7 +127,7 @@ export default function Sidebar() {
                   : "text-gray-500 hover:bg-violet-200 hover:text-violet-600"
               }`}
             >
-              <FontAwesomeIcon icon={faList} className="w-5 shrink-0" />
+              <FontAwesomeIcon icon={faList} className="w-4 shrink-0" />
               Categories
             </Link>
           </li>
@@ -141,7 +141,7 @@ export default function Sidebar() {
                   : "text-gray-500 hover:bg-violet-200 hover:text-violet-600"
               }`}
             >
-              <FontAwesomeIcon icon={faGear} className="w-5 shrink-0" />
+              <FontAwesomeIcon icon={faGear} className="w-4 shrink-0" />
               Settings
             </Link>
           </li>

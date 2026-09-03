@@ -1,30 +1,171 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 import AccountCard from "@/components/accounts/AccountCard";
 import AccountStats from "@/components/accounts/AccountStats";
-import AddAccountButton from "@/components/accounts/AddAccountButton";
+import AddAccount from "@/components/accounts/AddAccount";
 import SearchBar from "@/components/accounts/SearchBar";
-
-import { accounts } from "@/data/accounts";
+import AccountHeader from "@/components/accounts/AccountHeader";
+import DemoDataModal from "@/components/cards/DemoDataModal";
+import { useAuth } from "@/context/AuthContext";
 
 export default function AccountsPage() {
-  return (
-    <div className="flex flex-col gap-4 my-2 mx-4 ">
-      {/* Header */}
+  const [accounts, setAccounts] = useState([]);
+  const [showAddAccount, setShowAddAccount] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const { user, loading: authLoading } = useAuth();
+  const [editAccount, setEditAccount] = useState(null);
+  const [showDemoModal, setShowDemoModal] = useState(false);
 
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold">Accounts</h1>
-          <p className="text-gray-500 font-sm">
-            Manage all your payment methods in one place.
-          </p>
-        </div>
-        <AddAccountButton />
+  // Fetch accounts from MongoDB
+  const fetchAccounts = async () => {
+    try {
+      setLoading(true);
+
+      const response = await fetch("/api/accounts", {
+        method: "GET",
+        credentials: "include",
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Failed to fetch accounts");
+      }
+
+      setAccounts(data.accounts || []);
+    } catch (error) {
+      console.error("Fetch accounts error:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Fetch accounts only when authentication check is complete and user is logged in
+  useEffect(() => {
+    if (authLoading) return;
+
+    if (user) {
+      fetchAccounts();
+    } else {
+      // If not logged in, stop loading state and clear accounts (e.g. demo mode)
+      setAccounts([]);
+      setLoading(false);
+    }
+  }, [user, authLoading]);
+
+  if (authLoading) {
+    return (
+      <div className="flex min-h-[125] items-center justify-center">
+        <div className="h-10 w-10 animate-spin rounded-full border-4 border-gray-300 border-t-black" />
       </div>
+    );
+  }
+
+  const handleDeleteAccount = async (account) => {
+    const confirmed = window.confirm(
+      `Are you sure you want to delete ${account.accountName}?`,
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
+    try {
+      const response = await fetch("/api/accounts", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          accountId: account._id,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Failed to delete account");
+      }
+
+      // Remove deleted account from UI
+      setAccounts((prev) => prev.filter((item) => item._id !== account._id));
+    } catch (error) {
+      console.error("Delete account error:", error);
+    }
+  };
+
+  return (
+    <div className="min-h-[calc(100vh-22px)] my-1 mx-2 flex flex-col gap-3">
+      {/* Header */}
+      <div>
+        <AccountHeader
+          onAddAccount={() => {
+            if (!user) {
+              setShowDemoModal(true);
+              return;
+            }
+            setShowAddAccount(true);
+          }}
+        />
+
+        {showDemoModal && (
+          <DemoDataModal onClose={() => setShowDemoModal(false)} />
+        )}
+
+        {/* Add Account Modal */}
+        {showAddAccount && (
+          <AddAccount
+            editAccount={editAccount}
+            onClose={() => {
+              setShowAddAccount(false);
+              setEditAccount(null);
+            }}
+            onAddAccount={(account) => {
+              setAccounts((prev) => {
+                const exists = prev.some((item) => item._id === account._id);
+
+                if (exists) {
+                  return prev.map((item) =>
+                    item._id === account._id ? account : item,
+                  );
+                }
+                return [account, ...prev];
+              });
+            }}
+          />
+        )}
+      </div>
+
+      {/* Search */}
       <SearchBar />
-      <AccountStats />
+
+      {/* Stats */}
+      <AccountStats accounts={accounts} />
+
+      {/* Account List */}
       <div className="space-y-4">
-        {accounts.map((account) => (
-          <AccountCard key={account.id} account={account} />
-        ))}
+        {loading ? (
+          <p className="mt-40 text-center text-gray-500">Loading accounts...</p>
+        ) : accounts.length === 0 ? (
+          <p className="mt-40 text-center text-gray-500">
+            No accounts added yet.
+          </p>
+        ) : (
+          accounts.map((account) => (
+            <AccountCard
+              key={account._id}
+              account={account}
+              onEdit={(account) => {
+                setEditAccount(account);
+                setShowAddAccount(true);
+              }}
+              onDelete={handleDeleteAccount}
+            />
+          ))
+        )}
       </div>
     </div>
   );
