@@ -7,7 +7,7 @@ import IncomeExpenseChart from "@/components/charts/IncomeExpenseChart";
 import SpendingChart from "@/components/charts/SpendingChart";
 import SavingsGoals from "@/components/dashbaord/SavingsGoals";
 import RecentTransactions from "@/components/dashbaord/RecentTransactions";
-import CashFlwoSummary from "@/components/dashbaord/CashFlowSummary";
+import CashFlowSummary from "@/components/dashbaord/CashFlowSummary";
 import { useTransactions } from "@/context/TransactionContext";
 import { useAuth } from "@/context/AuthContext";
 import { demoTransactions } from "@/data/demoTransactions";
@@ -50,7 +50,7 @@ const {
 
       <CashFlowCard income={totalIncome} expense={totalExpense} />
 
-      <div className="flex gap-6">
+      <div className="dashboard-main-grid">
         <div className="flex-1">
           <SpendingChart transactions={displayTransactions} />
         </div>
@@ -64,10 +64,10 @@ const {
         </div>
       </div>
 
-      <div className="flex gap-4">
+      <div className="dashboard-bottom-grid">
         <IncomeExpenseChart transactions={displayTransactions} />
 
-        <CashFlwoSummary transactions={displayTransactions} />
+        <CashFlowSummary transactions={displayTransactions} />
       </div>
     </div>
   );

@@ -18,7 +18,7 @@ export default function CashFlwoSummary({ transactions = [] }) {
   const netCashFlow = totalIncome - totalExpense;
 
   return (
-    <div className="h-90 w-full rounded-3xl bg-white p-6 border-2 border-gray-200 shadow-sm">
+    <div className="responsive-card bg-white">
       <h2 className="text-lg font-semibold">
         Cash flow summary
       </h2>

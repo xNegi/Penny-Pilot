@@ -30,7 +30,7 @@ export default function Topbar() {
     <nav className="flex h-14 w-full items-center justify-between border-b-2 border-gray-200 px-3 md:justify-end ">
 
       {/* Mobile Brand */}
-      <div onClick={handleDashboardClick} className="ml-12 mt-2 flex items-center text-xl gap-2 font-bold text-violet-700 md:hidden cursor-pointer">
+      <div onClick={handleDashboardClick} className="ml-10  flex items-center text-xl gap-2 font-bold text-violet-700 md:hidden cursor-pointer">
         <FontAwesomeIcon icon={faPaperPlane} />
         <span>
           Penny Pilot

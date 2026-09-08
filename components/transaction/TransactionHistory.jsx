@@ -25,12 +25,11 @@ export default function TransactionHistory({ onEdit }) {
     startIndex + transactionsPerPage
   );
 
-  // Only show the latest 5 transactions in the main card
   const recentTransactions = transactions.slice(0, 5);
 
   const handleDelete = async (id) => {
     const confirmed = window.confirm(
-      "Are you sure you want to delete this transaction?",
+      "Are you sure you want to delete this transaction?"
     );
 
     if (!confirmed) return;
@@ -50,35 +49,34 @@ export default function TransactionHistory({ onEdit }) {
 
   return (
     <>
-      <div className="h-self-stretch w-[65%] rounded-3xl bg-white p-4 border-2 border-gray-200 shadow-sm">
-        <div className="flex items-center">
-          <h2 className="text-lg font-semibold">
-            Transaction History{" "}
-            <FontAwesomeIcon
-              icon={faClock}
-              className="text-gray-400"
-            />
-          </h2>
-        </div>
+      <div className="transaction-history-card">
+        <h2 className="transaction-history-title">
+          Transaction History{" "}
+          <FontAwesomeIcon
+            icon={faClock}
+            className="text-gray-400"
+          />
+        </h2>
 
-        <div className="mt-6">
+        <div className="transaction-history-list">
           <ul>
             {transactions.length === 0 ? (
-              <p className="h-70 flex items-center justify-center text-gray-500 py-6">
+              <p className="transaction-empty">
                 No transactions yet.
               </p>
             ) : (
               recentTransactions.map((transaction) => (
                 <li
                   key={transaction._id}
-                  className="grid grid-cols-[1fr_auto_120px] items-center border-b border-gray-300 py-3"
+                  className="transaction-row"
                 >
-                  {/* Transaction Details */}
-                  <div className="text-lg font-semibold">
-                    {transaction.description}
+                  <div className="transaction-details">
+                    <p className="transaction-description">
+                      {transaction.description}
+                    </p>
 
-                    <div className="flex gap-4 mb-2">
-                      <p className="text-sm text-gray-500">
+                    <div className="transaction-meta">
+                      <p>
                         {transaction.date
                           ? new Date(
                               transaction.date
@@ -86,40 +84,39 @@ export default function TransactionHistory({ onEdit }) {
                           : "No date"}
                       </p>
 
-                      <p className="text-sm text-gray-500">
-                        {transaction.category}
-                      </p>
+                      <p>{transaction.category}</p>
                     </div>
                   </div>
 
-                  {/* Amount */}
                   <p
-                    className={`text-lg font-semibold text-center ${
+                    className={`transaction-amount ${
                       transaction.type === "income"
-                        ? "text-green-500"
-                        : "text-red-500"
+                        ? "income"
+                        : "expense"
                     }`}
                   >
                     {transaction.type === "income" ? "+" : "-"}₹
                     {Number(transaction.amount).toFixed(2)}
                   </p>
 
-                  {/* Actions */}
-                  <div className="flex justify-end items-center gap-2">
+                  <div className="transaction-actions">
                     <button
-                      className="hover:cursor-pointer"
                       onClick={() => onEdit(transaction)}
+                      aria-label="Edit transaction"
                     >
                       <MdEdit size={20} />
                     </button>
 
                     <button
-                      className="text-red-500 hover:cursor-pointer disabled:cursor-not-allowed disabled:opacity-50"
-                      onClick={() => handleDelete(transaction._id)}
+                      className="delete"
+                      onClick={() =>
+                        handleDelete(transaction._id)
+                      }
                       disabled={deletingId === transaction._id}
+                      aria-label="Delete transaction"
                     >
                       {deletingId === transaction._id ? (
-                        <span className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-gray-300 border-t-red-500" />
+                        <span className="transaction-spinner" />
                       ) : (
                         <MdDelete size={20} />
                       )}
@@ -130,13 +127,9 @@ export default function TransactionHistory({ onEdit }) {
             )}
           </ul>
 
-          {/* View More */}
           {transactions.length > 5 && (
-            <div className="flex justify-center mt-5">
-              <button
-                onClick={handleViewMore}
-                className="rounded-xl bg-violet-600 px-5 py-2 text-sm font-medium text-white hover:bg-violet-700"
-              >
+            <div className="transaction-view-more">
+              <button onClick={handleViewMore}>
                 View More
               </button>
             </div>
@@ -145,17 +138,13 @@ export default function TransactionHistory({ onEdit }) {
       </div>
 
       {showAll && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
-          <div className="relative flex max-h-[90vh] w-full max-w-5xl flex-col overflow-hidden rounded-3xl bg-white shadow-2xl">
-            
-            {/* Modal Header */}
-            <div className="flex items-center justify-between border-b border-gray-200 px-6 py-5">
+        <div className="transaction-modal-overlay">
+          <div className="transaction-modal">
+            <div className="transaction-modal-header">
               <div>
-                <h2 className="text-xl font-semibold">
-                  All Transactions
-                </h2>
+                <h2>All Transactions</h2>
 
-                <p className="mt-1 text-sm text-gray-500">
+                <p>
                   Showing {startIndex + 1}–
                   {Math.min(
                     startIndex + transactionsPerPage,
@@ -165,30 +154,29 @@ export default function TransactionHistory({ onEdit }) {
                 </p>
               </div>
 
-              {/* Close Button */}
               <button
                 onClick={handleClose}
-                className="flex h-9 w-9 items-center justify-center rounded-full text-gray-500 transition hover:bg-gray-100 hover:text-black"
+                className="transaction-modal-close"
                 aria-label="Close"
               >
                 <MdClose size={24} />
               </button>
             </div>
 
-            {/* Modal Transactions */}
-            <div className="overflow-y-auto px-6">
+            <div className="transaction-modal-list">
               <ul>
                 {paginatedTransactions.map((transaction) => (
                   <li
                     key={transaction._id}
-                    className="grid grid-cols-[1fr_auto_120px] items-center border-b border-gray-300 py-4"
+                    className="transaction-row"
                   >
-                    {/* Transaction Details */}
-                    <div className="text-lg font-semibold">
-                      {transaction.description}
+                    <div className="transaction-details">
+                      <p className="transaction-description">
+                        {transaction.description}
+                      </p>
 
-                      <div className="flex gap-4 mb-2">
-                        <p className="text-sm text-gray-500">
+                      <div className="transaction-meta">
+                        <p>
                           {transaction.date
                             ? new Date(
                                 transaction.date
@@ -196,42 +184,41 @@ export default function TransactionHistory({ onEdit }) {
                             : "No date"}
                         </p>
 
-                        <p className="text-sm text-gray-500">
-                          {transaction.category}
-                        </p>
+                        <p>{transaction.category}</p>
                       </div>
                     </div>
 
-                    {/* Amount */}
                     <p
-                      className={`text-lg font-semibold text-center ${
+                      className={`transaction-amount ${
                         transaction.type === "income"
-                          ? "text-green-500"
-                          : "text-red-500"
+                          ? "income"
+                          : "expense"
                       }`}
                     >
                       {transaction.type === "income" ? "+" : "-"}₹
                       {Number(transaction.amount).toFixed(2)}
                     </p>
 
-                    {/* Actions */}
-                    <div className="flex justify-end items-center gap-2">
+                    <div className="transaction-actions">
                       <button
-                        className="hover:cursor-pointer"
                         onClick={() => onEdit(transaction)}
+                        aria-label="Edit transaction"
                       >
                         <MdEdit size={20} />
                       </button>
 
                       <button
-                        className="text-red-500 hover:cursor-pointer disabled:cursor-not-allowed disabled:opacity-50"
+                        className="delete"
                         onClick={() =>
                           handleDelete(transaction._id)
                         }
-                        disabled={deletingId === transaction._id}
+                        disabled={
+                          deletingId === transaction._id
+                        }
+                        aria-label="Delete transaction"
                       >
                         {deletingId === transaction._id ? (
-                          <span className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-gray-300 border-t-red-500" />
+                          <span className="transaction-spinner" />
                         ) : (
                           <MdDelete size={20} />
                         )}
@@ -243,20 +230,16 @@ export default function TransactionHistory({ onEdit }) {
             </div>
 
             {totalPages > 1 && (
-              <div className="flex items-center justify-center gap-2 border-t border-gray-200 px-6 py-5">
-                
-                {/* Previous */}
+              <div className="transaction-pagination">
                 <button
                   onClick={() =>
                     setCurrentPage((prev) => prev - 1)
                   }
                   disabled={currentPage === 1}
-                  className="rounded-lg border border-gray-300 px-3 py-2 text-sm transition hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-40"
                 >
                   Previous
                 </button>
 
-                {/* Page Numbers */}
                 {Array.from(
                   { length: totalPages },
                   (_, index) => index + 1
@@ -264,23 +247,19 @@ export default function TransactionHistory({ onEdit }) {
                   <button
                     key={page}
                     onClick={() => setCurrentPage(page)}
-                    className={`rounded-lg px-3 py-2 text-sm transition ${
-                      currentPage === page
-                        ? "bg-violet-600 text-white"
-                        : "border border-gray-300 hover:bg-gray-100"
-                    }`}
+                    className={
+                      currentPage === page ? "active" : ""
+                    }
                   >
                     {page}
                   </button>
                 ))}
 
-                {/* Next */}
                 <button
                   onClick={() =>
                     setCurrentPage((prev) => prev + 1)
                   }
                   disabled={currentPage === totalPages}
-                  className="rounded-lg border border-gray-300 px-3 py-2 text-sm transition hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-40"
                 >
                   Next
                 </button>

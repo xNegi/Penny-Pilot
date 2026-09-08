@@ -18,7 +18,6 @@ export default function AccountsPage() {
   const [editAccount, setEditAccount] = useState(null);
   const [showDemoModal, setShowDemoModal] = useState(false);
 
-  // Fetch accounts from MongoDB
   const fetchAccounts = async () => {
     try {
       setLoading(true);
@@ -42,14 +41,12 @@ export default function AccountsPage() {
     }
   };
 
-  // Fetch accounts only when authentication check is complete and user is logged in
   useEffect(() => {
     if (authLoading) return;
 
     if (user) {
       fetchAccounts();
     } else {
-      // If not logged in, stop loading state and clear accounts (e.g. demo mode)
       setAccounts([]);
       setLoading(false);
     }
@@ -57,7 +54,7 @@ export default function AccountsPage() {
 
   if (authLoading) {
     return (
-      <div className="flex min-h-[125] items-center justify-center">
+      <div className="flex min-h-[125px] items-center justify-center">
         <div className="h-10 w-10 animate-spin rounded-full border-4 border-gray-300 border-t-black" />
       </div>
     );
@@ -68,9 +65,7 @@ export default function AccountsPage() {
       `Are you sure you want to delete ${account.accountName}?`,
     );
 
-    if (!confirmed) {
-      return;
-    }
+    if (!confirmed) return;
 
     try {
       const response = await fetch("/api/accounts", {
@@ -90,54 +85,58 @@ export default function AccountsPage() {
         throw new Error(data.message || "Failed to delete account");
       }
 
-      // Remove deleted account from UI
-      setAccounts((prev) => prev.filter((item) => item._id !== account._id));
+      setAccounts((prev) =>
+        prev.filter((item) => item._id !== account._id),
+      );
     } catch (error) {
       console.error("Delete account error:", error);
     }
   };
 
   return (
-    <div className="min-h-[calc(100vh-22px)] my-1 mx-2 flex flex-col gap-3">
+    <div className="my-1 mx-2 flex min-h-[calc(100vh-22px)] flex-col gap-3">
       {/* Header */}
-      <div>
-        <AccountHeader
-          onAddAccount={() => {
-            if (!user) {
-              setShowDemoModal(true);
-              return;
-            }
-            setShowAddAccount(true);
+      <AccountHeader
+        onAddAccount={() => {
+          if (!user) {
+            setShowDemoModal(true);
+            return;
+          }
+
+          setShowAddAccount(true);
+        }}
+      />
+
+      {/* Demo Modal */}
+      {showDemoModal && (
+        <DemoDataModal onClose={() => setShowDemoModal(false)} />
+      )}
+
+      {/* Add/Edit Account Modal */}
+      {showAddAccount && (
+        <AddAccount
+          editAccount={editAccount}
+          onClose={() => {
+            setShowAddAccount(false);
+            setEditAccount(null);
+          }}
+          onAddAccount={(account) => {
+            setAccounts((prev) => {
+              const exists = prev.some(
+                (item) => item._id === account._id,
+              );
+
+              if (exists) {
+                return prev.map((item) =>
+                  item._id === account._id ? account : item,
+                );
+              }
+
+              return [account, ...prev];
+            });
           }}
         />
-
-        {showDemoModal && (
-          <DemoDataModal onClose={() => setShowDemoModal(false)} />
-        )}
-
-        {/* Add Account Modal */}
-        {showAddAccount && (
-          <AddAccount
-            editAccount={editAccount}
-            onClose={() => {
-              setShowAddAccount(false);
-              setEditAccount(null);
-            }}
-            onAddAccount={(account) => {
-              setAccounts((prev) => {
-                const exists = prev.some((item) => item._id === account._id);
-
-                if (exists) {
-                  return prev.map((item) =>
-                    item._id === account._id ? account : item,
-                  );
-                }
-                return [account, ...prev];
-              });
-            }}
-          />
-        )}
-      </div>
+      )}
 
       {/* Search */}
       <SearchBar />
@@ -148,9 +147,11 @@ export default function AccountsPage() {
       {/* Account List */}
       <div className="space-y-4">
         {loading ? (
-          <p className="mt-40 text-center text-gray-500">Loading accounts...</p>
+          <p className="mt-20 text-center text-gray-500 sm:mt-40">
+            Loading accounts...
+          </p>
         ) : accounts.length === 0 ? (
-          <p className="mt-40 text-center text-gray-500">
+          <p className="mt-20 text-center text-gray-500 sm:mt-40">
             No accounts added yet.
           </p>
         ) : (

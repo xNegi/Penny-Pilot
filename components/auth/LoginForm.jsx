@@ -18,44 +18,43 @@ export default function LoginForm() {
   const router = useRouter();
   const { fetchUser } = useAuth();
 
- const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  setError("");
+    setError("");
 
-  try{
-    const response = await fetch ("/api/auth/login",{
-      method: "POST",
-      headers:{
-        "Content-Type":"application/json"
-      },
-      body: JSON.stringify({
-        identifier,
-        password,
-      }),
-    });
+    try {
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          identifier,
+          password,
+        }),
+      });
 
-    const data = await response.json();
+      const data = await response.json();
 
-    console.log(data);
+      console.log(data);
 
-    if (response.ok){
-      alert("User Logged-in successfully");
-      await fetchUser();
-      router.push("/settings");
-      return;
+      if (response.ok) {
+        alert("User Logged-in successfully");
+        await fetchUser();
+        router.push("/settings");
+        return;
+      }
+
+      setError(data.message);
+    } catch (error) {
+      console.error("Login request failed:", error);
+      setError("Somehing went wrong. Please try again.");
     }
-
-    setError(data.message);
-
-  } catch(error){
-    console.error("Login request failed:", error);
-    setError("Somehing went wrong. Please try again.");
-  }
-};
+  };
 
   return (
-    <div className="flex flex-col items-center justify-center gap-6 bg-gray-100/30 border border-gray-300 rounded-2xl shadow-sm p-4">
+    <div className="h-[90vh] sm:h-auto flex flex-col items-center justify-center gap-6 bg-gray-100/30 border border-gray-300 rounded-2xl shadow-sm p-2">
       <div className="mt-4 flex items-center justify-center gap-4">
         <div>
           <FaPiggyBank size={50} className="text-violet-700" />
@@ -66,20 +65,28 @@ export default function LoginForm() {
         </div>
       </div>
 
-      <div className="flex flex-col items-center justify-center pl-6 ">
-        <h2 className="text-2xl font-bold"> Welcome Back!</h2>
+      <form
+        onSubmit={handleSubmit}
+        className="h-full w-full max-w-md flex flex-col justify-center gap-5 mt-4"
+      >
+
+      <div className="flex flex-col items-center justify-center text-center mb-12">
+        <h2 className="text-2xl font-bold">Welcome Back!</h2>
         <p className="text-gray-500 text-sm">
           Login to continue managing your finances
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-5 mt-4">
-         {error && <p className="text-sm text-red-500">{error}</p>}
-        {/* Email */}
+        {error && <p className="text-sm text-red-500">{error}</p>}
+
         <div className="flex flex-col gap-2">
-          <label htmlFor="identifier" className="text-sm font-bold text-gray-700">
+          <label
+            htmlFor="identifier"
+            className="text-sm font-bold text-gray-700"
+          >
             Email / Username / MobileNo.
           </label>
+
           <div className="relative">
             <CiUser
               size={20}
@@ -91,39 +98,41 @@ export default function LoginForm() {
               type="text"
               value={identifier}
               onChange={(e) => setIdentifier(e.target.value)}
-              placeholder="Enter your email, username or mobile no. "
+              placeholder="Enter your email, username or mobile no."
               required
-              className="w-100 rounded-lg border border-gray-300 px-4 py-3 pl-10 outline-none transition focus:border-violet-500 focus:ring-2 focus:ring-violet-200"
+              className="w-full rounded-lg border border-gray-300 px-4 py-3 pl-10 outline-none transition focus:border-violet-500 focus:ring-2 focus:ring-violet-200"
             />
           </div>
         </div>
 
-        {/* Password */}
         <div className="flex flex-col gap-2">
           <label htmlFor="password" className="text-sm font-bold text-gray-700">
             Password
           </label>
+
           <div className="relative">
             <CiLock
               size={20}
               className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-600"
             />
-          <input
-            id="password"
-            type={showpassword ? "text" : "password"}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder=" Enter your password"
-            required
-            className="w-full rounded-lg border border-gray-300 px-4 py-3 pl-10 outline-none transition focus:border-violet-500 focus:ring-2 focus:ring-violet-200"
-          />
-          <button
-            type="button"
-            onClick={() => setShowPassword((prev) => !prev)}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
-          >
-            {showpassword ? <FiEye size={20}/> : <FiEyeOff size={20}/>}
-          </button>
+
+            <input
+              id="password"
+              type={showpassword ? "text" : "password"}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter your password"
+              required
+              className="w-full rounded-lg border border-gray-300 px-4 py-3 pl-10 pr-12 outline-none transition focus:border-violet-500 focus:ring-2 focus:ring-violet-200"
+            />
+
+            <button
+              type="button"
+              onClick={() => setShowPassword((prev) => !prev)}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
+            >
+              {showpassword ? <FiEye size={20} /> : <FiEyeOff size={20} />}
+            </button>
           </div>
         </div>
 
@@ -139,12 +148,12 @@ export default function LoginForm() {
       <p className="text-gray-600 text-sm ">or continue with</p>
 
       <div className="flex gap-2">
-        <button className="flex items-center justify-center gap-2 w-full rounded-lg border border-gray-300 p-2 outline-none transition focus:ring-2 focus:border-violet-500 focus:ring-violet-200">
+        <button className="flex flex-1 items-center justify-center gap-2 rounded-lg border border-gray-300 py-2 px-2 text-xs sm:text-sm outline-none transition focus:ring-2 focus:border-violet-500 focus:ring-violet-200">
           <FaGoogle size={20} />
           <span> Google</span>
         </button>
 
-        <button className="flex items-center justify-center gap-2 w-full rounded-lg border border-gray-300 p-2 outline-none transition focus:ring-2 focus:border-violet-500  focus:ring-violet-200">
+        <button className="flex flex-1 items-center justify-center gap-2 rounded-lg border border-gray-300 py-2 px-2 text-xs sm:text-sm outline-none transition focus:ring-2 focus:border-violet-500 focus:ring-violet-200">
           <TiVendorMicrosoft size={20} />
           <span> Microsoft</span>
         </button>
@@ -153,7 +162,10 @@ export default function LoginForm() {
       <div>
         <p className="text-gray-600 text-sm py-4">
           Don't have an account?{" "}
-          <Link href="/auth/signup" className="text-violet-600 hover:underline ml-1">
+          <Link
+            href="/auth/signup"
+            className="text-violet-600 hover:underline ml-1"
+          >
             Sign Up
           </Link>
         </p>

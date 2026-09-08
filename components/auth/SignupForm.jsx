@@ -75,14 +75,14 @@ export default function SignupForm() {
         </div>
       </div>
 
-      <div className="flex flex-col items-center justify-center pl-6 ">
+      <div className="flex flex-col items-center justify-center text-center pl-6">
         <h2 className="text-2xl font-bold"> Create your account</h2>
         <p className="text-gray-500 text-sm">
           Start your financial journey with Penny pilot
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-5 mt-4">
+      <form onSubmit={handleSubmit} className="w-full max-w-md flex flex-col gap-5 mt-4">
         {error && <p className="text-sm text-red-500">{error}</p>}
         {/* fullname */}
         <div className="flex flex-col gap-2">
@@ -101,7 +101,7 @@ export default function SignupForm() {
               onChange={(e) => setFullName(e.target.value)}
               placeholder="Enter your full name"
               required
-              className="w-100 rounded-lg border border-gray-300 px-4 py-3 pl-10 outline-none transition focus:border-violet-500 focus:ring-2 focus:ring-violet-200"
+              className="w-full rounded-lg border border-gray-300 px-4 py-3 pl-10 outline-none transition focus:border-violet-500 focus:ring-2 focus:ring-violet-200"
             />
           </div>
         </div>
@@ -123,14 +123,14 @@ export default function SignupForm() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
               required
-              className="w-100 rounded-lg border border-gray-300 px-4 py-3 pl-10 outline-none transition focus:border-violet-500 focus:ring-2 focus:ring-violet-200"
+              className="w-full rounded-lg border border-gray-300 px-4 py-3 pl-10 outline-none transition focus:border-violet-500 focus:ring-2 focus:ring-violet-200"
             />
           </div>
         </div>
 
         {/* mobileNumber */}
         <div className="flex flex-col gap-2">
-          <label htmlFor="email" className="text-sm font-bold text-gray-700">
+          <label htmlFor="mobilenumber" className="text-sm font-bold text-gray-700">
             Mobile Number
           </label>
           <div className="relative">
@@ -145,7 +145,7 @@ export default function SignupForm() {
               onChange={(e) => setMobileNumber(e.target.value)}
               placeholder="Enter your mobile number"
               required
-              className="w-100 rounded-lg border border-gray-300 px-4 py-3 pl-10 outline-none transition focus:border-violet-500 focus:ring-2 focus:ring-violet-200"
+              className="w-full rounded-lg border border-gray-300 px-4 py-3 pl-10 outline-none transition focus:border-violet-500 focus:ring-2 focus:ring-violet-200"
             />
           </div>
         </div>
@@ -167,7 +167,7 @@ export default function SignupForm() {
               onChange={(e) => setUserName(e.target.value)}
               placeholder="Choose a username"
               required
-              className="w-100 rounded-lg border border-gray-300 px-4 py-3 pl-10 outline-none transition focus:border-violet-500 focus:ring-2 focus:ring-violet-200"
+              className="w-full rounded-lg border border-gray-300 px-4 py-3 pl-10 outline-none transition focus:border-violet-500 focus:ring-2 focus:ring-violet-200"
             />
           </div>
         </div>
@@ -189,7 +189,7 @@ export default function SignupForm() {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Create a password"
               required
-              className="w-100 rounded-lg border border-gray-300 px-4 py-3 pl-10 outline-none transition focus:border-violet-500 focus:ring-2 focus:ring-violet-200"
+              className="w-full rounded-lg border border-gray-300 px-4 py-3 pl-10 outline-none transition focus:border-violet-500 focus:ring-2 focus:ring-violet-200"
             />
             <button
               type="button"
@@ -221,7 +221,7 @@ export default function SignupForm() {
               onChange={(e) => setConfirmPassword(e.target.value)}
               placeholder="Confirm your password"
               required
-              className="w-100 rounded-lg border border-gray-300 px-4 py-3 pl-10 outline-none transition focus:border-violet-500 focus:ring-2 focus:ring-violet-200"
+              className="w-full rounded-lg border border-gray-300 px-4 py-3 pl-10 outline-none transition focus:border-violet-500 focus:ring-2 focus:ring-violet-200"
             />
             <button
               type="button"
@@ -261,7 +261,7 @@ export default function SignupForm() {
 
       <p className="text-gray-600 text-sm ">or continue with</p>
 
-      <div className="flex gap-2">
+      <div className="w-full sm:w-100 flex gap-2">
         <button className="flex items-center justify-center gap-2 w-full rounded-lg border border-gray-300 p-2 outline-none transition focus:ring-2 focus:border-violet-500 focus:ring-violet-200">
           <FaGoogle size={20} />
           <span> Google</span>

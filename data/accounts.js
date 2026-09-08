@@ -1,3 +1,4 @@
+// demo structure for accounts data
 export const accounts = [
   {
     id: 1,

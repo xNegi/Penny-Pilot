@@ -43,40 +43,52 @@ export default function SpendingChart({ transactions = [] }) {
   );
 
   return (
-    <div className="h-90 w-full rounded-3xl bg-white p-6 border-2 border-gray-200 shadow-sm">
+    <div className="responsive-chart-container spending-chart">
       <h2 className="text-lg font-semibold">
         Spending by Category
       </h2>
 
-      <p className="mb-6 text-sm text-gray-500">
+      <p className="mb-4 text-sm text-gray-500">
         All transactions
       </p>
 
-      <ResponsiveContainer width="100%" height="80%">
-        <PieChart>
-          <Pie
-            data={data}
-            dataKey="value"
-            nameKey="name"
-            outerRadius={80}
-          >
-            {data.map((entry, index) => (
-              <Cell
-                key={entry.name}
-                fill={COLORS[index % COLORS.length]}
-              />
-            ))}
-          </Pie>
+      <div className="spending-chart-area">
+        <ResponsiveContainer width="100%" height="100%">
+          <PieChart>
+            <Pie
+              data={data}
+              dataKey="value"
+              nameKey="name"
+              cx="50%"
+              cy="45%"
+              outerRadius="55%"
+              paddingAngle={2}
+            >
+              {data.map((entry, index) => (
+                <Cell
+                  key={entry.name}
+                  fill={COLORS[index % COLORS.length]}
+                />
+              ))}
+            </Pie>
 
-          <Tooltip
-            formatter={(value) =>
-              `₹${Number(value).toLocaleString("en-IN")}`
-            }
-          />
+            <Tooltip
+              formatter={(value) =>
+                `₹${Number(value).toLocaleString("en-IN")}`
+              }
+            />
 
-          <Legend />
-        </PieChart>
-      </ResponsiveContainer>
+            <Legend
+              verticalAlign="bottom"
+              height={36}
+              wrapperStyle={{
+                fontSize: "12px",
+                width: "100%",
+              }}
+            />
+          </PieChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 }
