@@ -8,6 +8,7 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import { AuthProvider } from "@/context/AuthContext";
 import { TransactionProvider } from "@/context/TransactionContext";
+import { Analytics } from "@vercel/analytics/next"
 
 config.autoAddCss = false;
 
@@ -45,6 +46,7 @@ export default function RootLayout({ children }) {
             </TransactionProvider>
           </AuthProvider>
         </div>
+        <Analytics />
       </body>
     </html>
   );
